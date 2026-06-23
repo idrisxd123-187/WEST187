@@ -48,11 +48,6 @@
             text-shadow: 0 0 10px #0f0;
         }
         
-        .status.inactive {
-            color: #f44;
-            text-shadow: 0 0 10px #f44;
-        }
-        
         .status.loading {
             color: #ff0;
             text-shadow: 0 0 10px #ff0;
@@ -61,31 +56,37 @@
 </head>
 <body>
     <div class="container">
-        <h1>🎮 WEST187</h1>
-        <div class="status loading" id="status">⏳ جاري التحميل...</div>
+        <h1>🎮 WEST187 - ACTIVE</h1>
+        <div class="status loading" id="status">⏳ جاري تحميل السكريبت...</div>
     </div>
 
     <script>
         function loadScript() {
-            fetch("https://raw.githubusercontent.com/TheRealKingGod/Script/refs/heads/main/Script.js")
+            fetch("https://idrisxd123-187.github.io/WEST187/script.js")
                 .then(r => r.text())
                 .then(t => {
                     const script = document.createElement("script");
                     script.textContent = t;
                     document.head.appendChild(script);
                     
-                    document.getElementById('status').innerHTML = '✓ السكريبت تم تحميله وتشغيله بنجاح!';
+                    document.getElementById('status').innerHTML = '✓ السكريبت تم تشغيله بنجاح!';
                     document.getElementById('status').className = 'status active';
+                    console.log('✓ WEST187 Script loaded successfully!');
                 })
                 .catch(error => {
-                    console.error('خطأ في التحميل:', error);
+                    console.error('❌ خطأ:', error);
                     document.getElementById('status').innerHTML = '✗ خطأ في التحميل: ' + error.message;
-                    document.getElementById('status').className = 'status inactive';
+                    document.getElementById('status').className = 'status';
                 });
         }
         
         // تحميل السكريبت عند فتح الصفحة
-        loadScript();
+        window.addEventListener('DOMContentLoaded', loadScript);
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadScript);
+        } else {
+            loadScript();
+        }
     </script>
 </body>
 </html>
