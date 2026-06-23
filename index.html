@@ -12,58 +12,78 @@
         }
         
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Courier New', monospace;
+            background: #1e1e1e;
+            color: #d4d4d4;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 20px;
         }
         
         .container {
-            text-align: center;
-            background: white;
-            padding: 50px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            max-width: 600px;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #252526;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            border: 1px solid #3e3e42;
         }
         
         h1 {
-            color: #333;
+            color: #4ec9b0;
             margin-bottom: 20px;
-            font-size: 2.5em;
+            text-align: center;
+            font-size: 1.5em;
         }
         
-        p {
-            color: #666;
-            font-size: 1.1em;
-            margin-bottom: 30px;
-            line-height: 1.6;
+        pre {
+            background: #1e1e1e;
+            border: 1px solid #3e3e42;
+            border-radius: 4px;
+            padding: 15px;
+            overflow-x: auto;
+            line-height: 1.5;
+            color: #ce9178;
+            font-size: 12px;
         }
         
-        .btn {
+        .line-number {
+            color: #858585;
+            margin-right: 10px;
             display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background 0.3s;
-            margin: 10px;
-        }
-        
-        .btn:hover {
-            background: #764ba2;
+            width: 40px;
+            text-align: right;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🚀 WEST187</h1>
-        <p>مرحباً بك في صفحتك الرئيسية!</p>
-        <p>هذا المشروع تم إنشاؤه بنجاح على GitHub Pages</p>
-        <a href="https://github.com/idrisxd123-187/WEST187" class="btn">اذهب إلى المستودع</a>
+        <h1>📄 Do you.txt</h1>
+        <pre id="content">جاري التحميل...</pre>
     </div>
+
+    <script>
+        // تحميل محتوى الملف من المستودع
+        fetch('https://raw.githubusercontent.com/idrisxd123-187/WEST187/main/Do%20you.txt')
+            .then(response => response.text())
+            .then(data => {
+                const lines = data.split('\n');
+                let html = '';
+                lines.forEach((line, index) => {
+                    const lineNum = index + 1;
+                    html += `<div><span class="line-number">${lineNum}</span>${escapeHtml(line)}</div>`;
+                });
+                document.getElementById('content').innerHTML = html;
+            })
+            .catch(error => {
+                document.getElementById('content').textContent = 'خطأ في تحميل الملف: ' + error;
+            });
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
 </body>
 </html>
