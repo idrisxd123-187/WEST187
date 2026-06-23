@@ -3,8 +3,8 @@
 
     const _0x9a1f = window.WebSocket;
     let _0x3f2d = null;
-    let _0x7b4e = {};      // items
-    let _0x1c8a = {};      // players
+    let _0x7b4e = {};      
+    let _0x1c8a = {};      
     let _0x6d9f = { x: 0, y: 0 };
 
     let _0x4e2b = true;    // AntiKick
@@ -58,7 +58,7 @@
         else _0x7b4e[id] = { x, y };
     }
 
-    // Anti-Kick
+    // Anti-Kick (تم تعديله إلى كل 1 ثانية)
     function _0x4b9f() {
         if (_0x5c1e._p) clearInterval(_0x5c1e._p);
         _0x5c1e._p = setInterval(() => {
@@ -68,10 +68,10 @@
                 new Uint8Array(buf)[0] = 0x00;
                 _0x3f2d.send(buf);
             } catch (e) {}
-        }, 8500);
+        }, 1000);   // ← التعديل هنا (1 ثانية)
     }
 
-    // Auto Loot
+    // باقي الـ script بدون تغيير...
     function _0x8e2c() {
         if (_0x5c1e._l) clearInterval(_0x5c1e._l);
         _0x5c1e._l = setInterval(() => {
@@ -94,7 +94,6 @@
         } catch (e) {}
     }
 
-    // AimBot Max
     function _0x3d7a() {
         if (_0x5c1e._a) clearInterval(_0x5c1e._a);
         _0x5c1e._a = setInterval(() => {
@@ -137,7 +136,6 @@
         _0x1c8a = {};
     }
 
-    // UI Max (بدون Heal)
     function _0x9e1f() {
         const p = document.createElement('div');
         p.style.cssText = `position:fixed;top:5px;right:5px;background:rgba(0,0,0,0.92);color:#0f0;font-family:monospace;font-size:11px;padding:5px 9px;border-radius:5px;z-index:99999;border:1px solid #0f0;user-select:none;opacity:0.8;`;
